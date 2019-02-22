@@ -70,21 +70,6 @@ def inference(images):
 
     pool5 = tf.nn.max_pool(conv5, ksize=[1, 3, 3, 1], strides=[1, 2, 2, 1], padding='VALID', name='pool5')
     print_activations(pool5)
-    """
-    reshape = tf.reshape(pool5, [batch_size, -1])
-    dim = reshape.get_shape()[1].value
-    weight6 = tf.Variable(tf.truncated_normal([dim, 4096], stddev=0.04))
-    bias6 = tf.Variable(tf.constant(0.1, shape=[4096]))
-    local6 = tf.nn.relu(tf.matmul(weight6, reshape) + bias6)
-
-    weight7 = tf.Variable(tf.truncated_normal([4096, 4096], stddev=0.04))
-    bias7 = tf.Variable(tf.constant(0.1, shape=[4096]))
-    local7 = tf.nn.relu(tf.matmul(weight7, local6) + bias7)
-    
-    weight8 = tf.Variable(tf.truncated_normal([4096, 1000], stddev=0.04))
-    bias8 = tf.Variable(tf.constant(0.1, shape=[1000]))
-    local8 = tf.nn.relu(tf.matmul(weight8, local7) + bias8)
-    """
     return pool5, parameters
 
 
